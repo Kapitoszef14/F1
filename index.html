@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0d1015">
+  <title>Gridline — panel turnieju F1</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">G</span><span>GRIDLINE</span><small>F1 CUP / 2025</small></div>
+      <div class="sidebar-label">Nawigacja</div>
+      <nav class="nav-list" aria-label="Główna nawigacja">
+        <button class="nav-item active" data-view="overview"><span class="nav-icon">◈</span>Przegląd</button>
+        <button class="nav-item" data-view="races"><span class="nav-icon">≡</span>Wyścigi <span class="nav-count">08</span></button>
+        <button class="nav-item" data-view="drivers"><span class="nav-icon">♢</span>Kierowcy</button>
+        <button class="nav-item" data-view="teams"><span class="nav-icon">▦</span>Zespoły</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="season-card"><span class="live-dot"></span><div><strong>Sezon trwa</strong><small id="seasonRaceInfo">6 z 8 rund zakończonych</small></div></div>
+        <button class="admin-link" id="openAdmin"><span>⚙</span> Panel administratora</button>
+        <div class="profile"><div class="avatar">MK</div><div><strong>Michał Kowalski</strong><small>Administrator</small></div><span class="dots">···</span></div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar"><div class="crumbs"><span>SEZON 2025</span><b>/</b><strong id="viewTitle">PRZEGLĄD</strong></div><div class="top-actions"><span class="sync-status"><i></i> Zapisano lokalnie</span><button class="icon-button" title="Powiadomienia">♢<em></em></button><button class="primary-button" id="openAdminTop">＋ Dodaj dane</button></div></header>
+
+      <div id="overviewView" class="view-panel">
+        <section class="intro"><div><p class="eyebrow">CENTRUM DOWODZENIA <span>LIVE</span></p><h1>Sezon w liczbach<span>.</span></h1><p class="intro-copy">Wszystko, co dzieje się na torze, w jednym miejscu.</p></div><div class="next-race"><div class="next-label">NASTĘPNY WYŚCIG <span id="nextRaceDays">--</span></div><strong id="nextRaceName">Dodaj pierwszy wyścig</strong><small id="nextRaceMeta">Data i godzina pojawią się tutaj</small><div class="countdown"><b id="countDays">00</b><i>:</i><b id="countHours">00</b><i>:</i><b id="countMinutes">00</b><i>:</i><b id="countSeconds">00</b></div><div class="countdown-labels"><span>dni</span><span>godz</span><span>min</span><span>sek</span></div></div></section>
+        <section class="stats-grid" aria-label="Statystyki sezonu"><div class="stat-card"><div class="stat-top"><span>ROZGRANE WYŚCIGI</span><i>↗</i></div><strong id="raceStat">06 <small>/ 08</small></strong><div class="progress"><span id="raceProgress" style="width:75%"></span></div><small class="stat-note" id="raceNote">75% sezonu za nami</small></div><div class="stat-card accent"><div class="stat-top"><span>LIDER KLASYFIKACJI</span><i>↗</i></div><strong id="leaderName">Max Verstappen</strong><div class="stat-detail"><span class="driver-mini" id="leaderBadge">MV</span><span id="leaderTeam">Red Bull Racing</span><b id="leaderPoints">142 pkt</b></div></div><div class="stat-card"><div class="stat-top"><span>NAJWIĘCEJ ZWYCIĘSTW</span><i>↗</i></div><strong id="winsName">Max Verstappen</strong><div class="stat-detail"><span class="trophy">♛</span><span id="winsCount">4 zwycięstwa</span><b id="winsPercent">67%</b></div></div><div class="stat-card"><div class="stat-top"><span>NAJLEPSZY ZESPÓŁ</span><i>↗</i></div><strong id="bestTeamName">Red Bull Racing</strong><div class="stat-detail"><span class="team-mini red" id="bestTeamBadge">RB</span><span id="bestTeamPoints">278 punktów</span><b id="bestTeamDelta">+42</b></div></div></section>
+        <div class="content-grid"><section class="section-block race-section"><div class="section-heading"><div><p class="eyebrow">HISTORIA STARTÓW</p><h2>Ostatnie wyścigi</h2></div><button class="text-button" data-view-target="races">Zobacz wszystkie <span>→</span></button></div><div class="race-list" id="recentRaces"></div></section><aside class="section-block leaderboard"><div class="section-heading"><div><p class="eyebrow">KLASYFIKACJA</p><h2>Kierowcy</h2></div><button class="icon-button small" title="Pełna klasyfikacja" data-view-target="drivers">↗</button></div><div id="leaderboardList"></div></aside></div>
+      </div>
+
+      <div id="racesView" class="view-panel hidden"><section class="page-heading"><div><p class="eyebrow">SEZON 2025 / 08 RUND</p><h1>Kalendarz wyścigów<span>.</span></h1><p>Wybierz rundę, aby zobaczyć pełne wyniki i szczegóły przejazdów.</p></div><button class="primary-button" id="openAdminRace">＋ Nowy wyścig</button></section><div class="filter-row"><button class="filter active">Wszystkie <b>08</b></button><button class="filter">Zakończone <b>06</b></button><button class="filter">Nadchodzące <b>02</b></button></div><div class="full-race-list" id="fullRaceList"></div></div>
+
+      <div id="driversView" class="view-panel hidden"><section class="page-heading"><div><p class="eyebrow">SEZON 2025 / PUNKTY INDYWIDUALNE</p><h1>Klasyfikacja kierowców<span>.</span></h1><p>Dodawaj własnych zawodników i przypisuj ich do zespołów.</p></div><button class="primary-button" id="openAdminDriver">＋ Dodaj zawodnika</button></section><div class="drivers-table" id="driversTable"></div></div>
+      <div id="teamsView" class="view-panel hidden"><section class="page-heading"><div><p class="eyebrow">SEZON 2025 / PUNKTY KONSTRUKTORÓW</p><h1>Klasyfikacja zespołów<span>.</span></h1><p>Forma zespołów w aktualnym sezonie.</p></div><button class="primary-button" id="openAdminTeam">＋ Dodaj zespół</button></section><div class="team-grid" id="teamGrid"></div></div>
+    </main>
+  </div>
+
+  <div class="modal-backdrop hidden" id="adminModal"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><button class="modal-close" id="closeAdmin" aria-label="Zamknij">×</button><p class="eyebrow">PANEL ADMINISTRATORA</p><h2 id="modalTitle">Dodaj dane wyścigu</h2><p class="modal-copy" id="modalCopy">Uzupełnij podstawowe informacje. Dane zostaną zapisane tylko w tej przeglądarce.</p><form id="raceForm"><div id="raceFields"><div class="form-grid"><label>Nazwa wyścigu<input name="name" required placeholder="np. Grand Prix Monako"></label><label>Data<input name="date" type="date" required></label><label>Tor / lokalizacja<input name="location" required placeholder="np. Monte Carlo"></label><label>Godzina startu<input name="time" type="time" required></label></div><label class="full-label">Zwycięzca<select name="winner"><option value="—">Jeszcze nie wiadomo</option><option>Max Verstappen</option><option>Charles Leclerc</option><option>Lando Norris</option><option>Oscar Piastri</option></select></label></div><div id="driverFields" class="hidden"><div class="form-grid"><label>Imię i nazwisko<input name="driverName" placeholder="np. Jan Kowalski"></label><label>Zespół<select name="driverTeam"><option value="Bez zespołu">Bez zespołu</option></select></label></div></div><div id="resultFields" class="hidden"><div class="form-grid"><label>Kierowca<select name="driver"><option>Max Verstappen</option><option>Charles Leclerc</option><option>Lando Norris</option><option>Oscar Piastri</option><option>George Russell</option><option>Lewis Hamilton</option></select></label><label>Zespół<input name="team" required value="Red Bull Racing"></label><label>Czas / strata<input name="resultTime" required placeholder="np. 1:32:41.382"></label><label>Punkty<input name="points" type="number" min="0" max="26" required value="25"></label></div></div><div id="teamFields" class="hidden"><div class="form-grid"><label>Nazwa zespołu<input name="teamName" placeholder="np. Aston Martin"></label><label>Skrot<input name="teamShort" placeholder="np. AM"></label><label>Kierowcy zespołu<select name="teamDrivers" multiple size="6"></select></label></div></div><div class="form-footer"><span class="form-hint">* Pola wymagane</span><button type="button" class="secondary-button" id="cancelAdmin">Anuluj</button><button class="primary-button" type="submit" id="submitAdmin">Zapisz wyścig</button></div></form></section></div>
+  <script src="app.js?v=6"></script>
+</body>
+</html>
